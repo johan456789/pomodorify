@@ -3,7 +3,7 @@
 # Settings
 WORK_URI="https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO" # Peaceful Piano
 BREAK_URI="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF" # Global Top 50
-DIR="/Users/johan/repos/pomodorify-master"
+DIR="/Users/johan/repos/pomodorify"
 
 LOGFILE_PATH="$DIR/log_file.txt"
 POMO_WORK=25*60
@@ -39,7 +39,7 @@ function call_logger() {
 	date >> $LOGFILE_PATH;
 	echo -e "\n" >> $LOGFILE_PATH
 	#vim + -c 'startinsert' "$LOGFILE_PATH";
-	$DEFAULT_EDITOR "$LOGFILE_PATH"
+	$DEFAULT_EDITOR + -c 'startinsert' "$LOGFILE_PATH"
 }
 
 COUNT=0
