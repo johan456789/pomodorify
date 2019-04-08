@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-DEFAULT_URI="https://open.spotify.com/user/125937873/playlist/5SgJR30RfzR5hO21TsQhBp"
-LOGFILE_PATH="./log_file.txt"
+# Settings
+WORK_URI="https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO" # Peaceful Piano
+BREAK_URI="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF" # Global Top 50
+DIR="/Users/johan/repos/pomodorify-master"
+
+LOGFILE_PATH="$DIR/log_file.txt"
 POMO_WORK=25*60
 POMO_SH_BREAK=5*60
 POMO_LN_BREAK=15*60
 N_POMOS=4 
-DEFAULT_EDITOR="mvim"
+DEFAULT_EDITOR="vim"
 
 # Setting shuffle on
 function shuffleOn() {
@@ -44,19 +48,21 @@ while :
 do 
 	if [ $COUNT -eq 4 ]; then
 		osascript -e 'display notification "Time for long break, cya in 15!" with title "Long Break"'
-		./spotify pause
+		$DIR/spotify play uri $BREAK_URI;
+		# $DIR/spotify pause
 		call_logger
 		countdown $POMO_LN_BREAK
 		COUNT=0
 	else 
 		#Start Work
 		osascript -e 'display notification "Get to work..." with title "Work Time"'
-		./spotify play uri $DEFAULT_URI;
+		$DIR/spotify play uri $WORK_URI;
 		countdown $POMO_WORK;
 
 		#Start Break
 		osascript -e 'display notification "Time for short break, cya in 5!" with title "Short Break"'
-		./spotify pause
+		$DIR/spotify play uri $BREAK_URI;
+		# $DIR/spotify pause
 		call_logger
 		countdown $POMO_SH_BREAK
 		((COUNT++));
